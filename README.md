@@ -18,7 +18,7 @@ B) How to Install:
 
 2. Upload the source code on server. path=/var/home/html/
 
-4. Browse the issue-api directory and run the following command to create issue:
+4. Browse the git-issue directory and run the following command to create issue:
 
   php create-issue.php "github-username" "github-password" "https://github.com/librianrahul/git-issue" "Test Title" "Test Description"
 
