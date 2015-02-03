@@ -259,12 +259,19 @@ class Handler
 			curl_setopt($curlResource, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
 			curl_setopt($curlResource, CURLOPT_CONNECTTIMEOUT, 90);
 
+			$postParameters['body'] = $postParameters['desc'];
+			unset($postParameters['desc']);
+
 			$data = json_encode($postParameters);
 		} else if ($this->GetType() == self::TYPE_BITBUCKET) {
 			curl_setopt($curlResource, CURLOPT_SSL_VERIFYPEER, 0);
 			curl_setopt($curlResource, CURLOPT_SSL_VERIFYHOST, 0);
 			curl_setopt($curlResource, CURLOPT_HEADER, false);
 			curl_setopt($curlResource, CURLOPT_POST, count($postParameters));
+
+			$postParameters['content'] = $postParameters['desc'];
+			unset($postParameters['desc']);
+
 			$data = utf8_encode(trim(http_build_query($postParameters, '', '&')));
 		} else {
 			throw new Exception('Invalid API type.');
